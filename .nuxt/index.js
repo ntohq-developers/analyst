@@ -11,8 +11,8 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 
 /* Plugins */
 
-import nuxt_plugin_axios_0e4bf238 from 'nuxt_plugin_axios_0e4bf238' // Source: ./axios.js (mode: 'all')
-import nuxt_plugin_buefy_5faa1cee from 'nuxt_plugin_buefy_5faa1cee' // Source: ./buefy.js (mode: 'all')
+import nuxt_plugin_axios_4fdf34e2 from 'nuxt_plugin_axios_4fdf34e2' // Source: .\\axios.js (mode: 'all')
+import nuxt_plugin_buefy_cc213640 from 'nuxt_plugin_buefy_cc213640' // Source: .\\buefy.js (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -151,12 +151,12 @@ async function createApp (ssrContext) {
 
   // Plugin execution
 
-  if (typeof nuxt_plugin_axios_0e4bf238 === 'function') {
-    await nuxt_plugin_axios_0e4bf238(app.context, inject)
+  if (typeof nuxt_plugin_axios_4fdf34e2 === 'function') {
+    await nuxt_plugin_axios_4fdf34e2(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_buefy_5faa1cee === 'function') {
-    await nuxt_plugin_buefy_5faa1cee(app.context, inject)
+  if (typeof nuxt_plugin_buefy_cc213640 === 'function') {
+    await nuxt_plugin_buefy_cc213640(app.context, inject)
   }
 
   // If server-side, wait for async component to be resolved first

@@ -96,7 +96,7 @@ export default {
   methods: {
     async fetchStockData() {
       const query = buildRequest({
-        url: `https://analyst-server.herokuapp.com/stockQuery/?`,
+        url: `https://analyst.herokuapp.com/stockQuery/?`,
         ticker: this.tickerInput,
         period: this.period,
         interval: this.interval
@@ -109,9 +109,8 @@ export default {
     },
 
     async fetchSearchData() {
-      // const query = `/api/ticker/${this.tickerInput}`
       const query = buildRequest({
-        url: `https://analyst-server.herokuapp.com/searchQuery/?`,
+        url: `https://analyst.herokuapp.com/searchQuery/?`,
         ticker: this.tickerInput
       })
       
@@ -125,9 +124,8 @@ export default {
     },
 
     async fetchNewsData() {
-      // const query = `/api/news/?ticker=${this.tickerInput}`
       const query = buildRequest({
-        url: `https://analyst-server.herokuapp.com/newsQuery/?`,
+        url: `https://analyst.herokuapp.com/newsQuery/?`,
         ticker: this.tickerInput
       })
 

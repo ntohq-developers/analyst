@@ -51,7 +51,9 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: process.env.URL || process.env.baseURL
+  },
   /*
    ** Build configuration
    */
@@ -61,25 +63,4 @@ export default {
      */
     extend(config, ctx) {}
   },
-
-  proxy: {
-    '/api/stock': {
-      target: 'https://analyst-server.herokuapp.com',
-      pathRewrite: {
-        '^/api/stock': '/stockQuery/'
-      }
-    },
-    '/api/ticker': {
-      target: 'https://ticker-2e1ica8b9.now.sh/',
-      pathRewrite: {
-        '^/api/ticker': '/keyword/'
-      }
-    },
-    '/api/news': {
-      target: 'https://analyst-server.herokuapp.com',
-      pathRewrite: {
-        '^/api/news': '/newsQuery/'
-      }
-    }
-  }
 }

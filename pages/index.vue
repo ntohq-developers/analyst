@@ -96,7 +96,7 @@ export default {
   methods: {
     async fetchStockData() {
       const query = buildRequest({
-        url: `/api/stock/?`,
+        url: `https://analyst-server.herokuapp.com/stockQuery/?`,
         ticker: this.tickerInput,
         period: this.period,
         interval: this.interval
@@ -109,19 +109,27 @@ export default {
     },
 
     async fetchSearchData() {
-      const query = `/api/ticker/${this.tickerInput}`
-
+      // const query = `/api/ticker/${this.tickerInput}`
+      const query = buildRequest({
+        url: `https://analyst-server.herokuapp.com/searchQuery/?`,
+        ticker: this.tickerInput
+      })
+      
       try {
-        this.searchResults = await this.$axios.$get(query)
+        this.searchResults = (await this.$axios.$get(query))['ticker_data']
       } catch (error) {
         switchcaseF({
           500: serverErrorNotification
         })(unknownErrorNotification)(error.response.status)
-      }
+      } 
     },
 
     async fetchNewsData() {
-      const query = `/api/news/?ticker=${this.tickerInput}`
+      // const query = `/api/news/?ticker=${this.tickerInput}`
+      const query = buildRequest({
+        url: `https://analyst-server.herokuapp.com/newsQuery/?`,
+        ticker: this.tickerInput
+      })
 
       try {
         const articles = await this.$axios.$get(query)

@@ -14,7 +14,7 @@
             v-for="ticker in searchResults"
             :key="ticker.symbol"
             @click="
-              tickerInput = ticker.symbol
+              tickerInput = ticker.name
               fetchSearchData()
             "
           >

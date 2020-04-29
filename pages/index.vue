@@ -15,6 +15,7 @@
             :key="ticker.symbol"
             @click="
               tickerInput = ticker.symbol
+              companyName = ticker.name
               fetchSearchData()
             "
           >
@@ -126,7 +127,7 @@ export default {
     async fetchNewsData() {
       const query = buildRequest({
         url: `https://analyst.herokuapp.com/newsQuery/?`,
-        ticker: this.tickerInput
+        ticker: this.companyName
       })
 
       try {

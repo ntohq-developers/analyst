@@ -34,7 +34,7 @@
       <div class="section">
         <b-button @click="fetchStockData">Fetch Data</b-button>
         <b-field label="Period">
-          <b-select>
+          <b-select v-model="period">
             <option value="max">Max</option>
             <option value="10y">Ten years</option>
             <option value="5y">Five years</option>
@@ -48,7 +48,7 @@
           </b-select>
         </b-field>
         <b-field label="Interval">
-          <b-select>
+          <b-select v-model="interval">
             <option value="3mo">Three months</option>
             <option value="1mo">One month</option>
             <option value="1wk">One week</option>

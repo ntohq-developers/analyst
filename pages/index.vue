@@ -1,7 +1,7 @@
 <template>
   <section class="section">
-    <div class="columns is-mobile">
-      <div class="section">
+    <div class="tile is-ancestor">
+      <div class="tile box">
         <b-field label="Ticker">
           <b-input
             v-model="tickerInput"
@@ -31,7 +31,7 @@
         :chart-name="chartLabel"
         class="chart section"
       ></points-chart>
-      <div class="section">
+      <div class="tile box">
         <b-button @click="fetchStockData">Fetch Data</b-button>
         <b-field label="Period">
           <b-select v-model="period">
@@ -64,7 +64,7 @@
           </b-select>
         </b-field>
       </div>
-      <div class="section cards">
+      <div class="tile cards">
         <b-button @click="fetchNewsData">Fetch News</b-button>
         <div v-for="article in articles" :key="article.title" class="card">
           <div class="card-image">

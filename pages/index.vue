@@ -50,6 +50,22 @@
         </b-field>
         <b-field label="Interval">
           <b-input v-model="interval" type="text"></b-input>
+          <b-select>
+            <option value="3mo">Three months</option>
+            <option value="1mo">One month</option>
+            <option value="1wk">One week</option>
+            <option value="5d">Five days</option>
+            <option value="1d">One day</option>
+            <option value="1h">One hour</option>
+            <option value="90m">Ninety minutes</option>
+            <option value="60m">Sixty minutes</option>
+            <option value="30m">Thirty minutes</option>
+            <option value="15m">Fifteen minutes</option>
+            <option value="5m">Five minutes</option>
+            <option value="2m">Two minutes</option>
+            <option value="1m">One minutes</option>
+
+          </b-select>
         </b-field>
       </div>
       <div class="section cards">

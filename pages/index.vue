@@ -34,10 +34,34 @@
       <div class="section">
         <b-button @click="fetchStockData">Fetch Data</b-button>
         <b-field label="Period">
-          <b-input v-model="period" type="text"></b-input>
+          <b-select v-model="period">
+            <option value="max">Max</option>
+            <option value="10y">Ten years</option>
+            <option value="5y">Five years</option>
+            <option value="2y">Two years</option>
+            <option value="1y">One year</option>
+            <option value="6mo">Six months</option>
+            <option value="3mo">Three months</option>
+            <option value="1mo">One month</option>
+            <option value="1wk">One week</option>
+            <option value="5d">Five days</option>
+            <option value="1d">One day</option>
+          </b-select>
         </b-field>
         <b-field label="Interval">
-          <b-input v-model="interval" type="text"></b-input>
+          <b-select v-model="interval">
+            <option value="3mo">Three months</option>
+            <option value="1mo">One month</option>
+            <option value="1wk">One week</option>
+            <option value="5d">Five days</option>
+            <option value="1d">One day</option>
+            <option value="1h">One hour</option>
+            <option value="30m">Thirty minutes</option>
+            <option value="15m">Fifteen minutes</option>
+            <option value="5m">Five minutes</option>
+            <option value="2m">Two minutes</option>
+            <option value="1m">One minutes</option>
+          </b-select>
         </b-field>
       </div>
       <div class="section cards">
@@ -102,6 +126,7 @@ export default {
         period: this.period,
         interval: this.interval
       })
+      
       const data = await this.$axios.$get(query)
 
       this.chartLabel = this.tickerInput

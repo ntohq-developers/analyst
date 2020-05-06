@@ -56,8 +56,6 @@
             <option value="5d">Five days</option>
             <option value="1d">One day</option>
             <option value="1h">One hour</option>
-            <option value="90m">Ninety minutes</option>
-            <option value="60m">Sixty minutes</option>
             <option value="30m">Thirty minutes</option>
             <option value="15m">Fifteen minutes</option>
             <option value="5m">Five minutes</option>
@@ -128,6 +126,7 @@ export default {
         period: this.period,
         interval: this.interval
       })
+      alert(period)
       const data = await this.$axios.$get(query)
 
       this.chartLabel = this.tickerInput

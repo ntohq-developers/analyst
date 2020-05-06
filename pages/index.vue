@@ -126,7 +126,7 @@ export default {
         period: this.period,
         interval: this.interval
       })
-      alert(period)
+      
       const data = await this.$axios.$get(query)
 
       this.chartLabel = this.tickerInput

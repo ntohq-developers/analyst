@@ -9,7 +9,7 @@
             @input="fetchSearchData"
           ></b-input>
         </b-field>
-        <ul>
+        <ul class="tile is-child">
           <li
             v-for="ticker in searchResults"
             :key="ticker.symbol"

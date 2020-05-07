@@ -1,8 +1,8 @@
 <template>
   <section class="section">
     <div class="tile is-ancestor">
-      <div class="tile box">
-        <b-field label="Ticker">
+      <div class="tile is-parent">
+        <b-field class="tile is-child" label="Ticker">
           <b-input
             v-model="tickerInput"
             type="text"

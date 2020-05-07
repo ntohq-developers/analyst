@@ -1,15 +1,15 @@
 <template>
   <section class="section">
-    <div class="columns is-mobile">
-      <div class="section">
-        <b-field label="Ticker">
+    <div class="tile is-ancestor">
+      <div class="tile is-parent is-vertical">
+        <b-field class="tile is-child" style="max-height:50px;" label="Ticker">
           <b-input
             v-model="tickerInput"
             type="text"
             @input="fetchSearchData"
           ></b-input>
         </b-field>
-        <ul>
+        <ul class="tile is-child">
           <li
             v-for="ticker in searchResults"
             :key="ticker.symbol"
@@ -31,8 +31,9 @@
         :chart-name="chartLabel"
         class="chart section"
       ></points-chart>
-      <div class="section">
-        <b-button @click="fetchStockData">Fetch Data</b-button>
+      <div class="tile is-parent">
+        <div class="tile is-child is-vertical">
+          <b-button @click="fetchStockData" style="margin-bottom: 2em;">Fetch Data</b-button>
         <b-field label="Period">
           <b-select v-model="period">
             <option value="max">Max</option>
@@ -63,9 +64,10 @@
             <option value="1m">One minutes</option>
           </b-select>
         </b-field>
+        </div>
       </div>
       <div class="section cards">
-        <b-button @click="fetchNewsData">Fetch News</b-button>
+        <b-button @click="fetchNewsData" style="margin-top: 2em; margin-bottom: 2em;">Fetch News</b-button>
         <div v-for="article in articles" :key="article.title" class="card">
           <div class="card-image">
             <figure class="image">

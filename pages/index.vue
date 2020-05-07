@@ -30,7 +30,7 @@
         :labels="labels"
         :chart-name="chartLabel"
         class="chart section"
-        style="max-width: 100%;"
+        style="max-width: 4fr;"
       ></points-chart>
       <div class="tile is-parent">
         <div class="tile is-child is-vertical">

@@ -67,7 +67,7 @@
         </div>
       </div>
       <div class="tile cards">
-        <b-button @click="fetchNewsData">Fetch News</b-button>
+        <b-button @click="fetchNewsData" style="">Fetch News</b-button>
         <div v-for="article in articles" :key="article.title" class="card">
           <div class="card-image">
             <figure class="image">

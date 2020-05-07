@@ -1,6 +1,6 @@
 <template>
-  <div class="column">
-    <div class="card">
+  <div class="tile is-parent">
+    <div class="tile is-child card">
       <header class="card-header">
         <p class="card-header-title has-text-grey">
           {{ title }}

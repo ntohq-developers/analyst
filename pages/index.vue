@@ -2,7 +2,7 @@
   <section class="section">
     <div class="tile is-ancestor">
       <div class="tile is-parent is-vertical">
-        <b-field class="tile is-child" label="Ticker">
+        <b-field class="tile is-child is-2" label="Ticker">
           <b-input
             v-model="tickerInput"
             type="text"

@@ -34,7 +34,7 @@
       ></points-chart>
       <div class="tile is-parent">
         <div class="tile is-child is-vertical">
-          <b-button @click="fetchStockData">Fetch Data</b-button>
+          <b-button @click="fetchStockData" style="margin-bottom: 2em;">Fetch Data</b-button>
         <b-field label="Period">
           <b-select v-model="period">
             <option value="max">Max</option>
@@ -68,7 +68,7 @@
         </div>
       </div>
       <div class="tile cards">
-        <b-button @click="fetchNewsData" style="">Fetch News</b-button>
+        <b-button @click="fetchNewsData" style="margin-top: 2em; margin-bottom: 2em;">Fetch News</b-button>
         <div v-for="article in articles" :key="article.title" class="card">
           <div class="card-image">
             <figure class="image">

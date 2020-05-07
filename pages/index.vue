@@ -32,8 +32,8 @@
         class="chart section"
       ></points-chart>
       <div class="tile is-parent">
-        <b-button @click="fetchStockData">Fetch Data</b-button>
         <b-field class="tile is-child" label="Period">
+          <b-button @click="fetchStockData">Fetch Data</b-button>
           <b-select v-model="period">
             <option value="max">Max</option>
             <option value="10y">Ten years</option>

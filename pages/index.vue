@@ -67,7 +67,7 @@
         </b-field>
         </div>
       </div>
-      <div class="tile cards">
+      <div class="section cards">
         <b-button @click="fetchNewsData" style="margin-top: 2em; margin-bottom: 2em;">Fetch News</b-button>
         <div v-for="article in articles" :key="article.title" class="card">
           <div class="card-image">

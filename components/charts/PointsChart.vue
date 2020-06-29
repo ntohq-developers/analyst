@@ -49,7 +49,15 @@ export default {
             }
           ]
         },
-        { responsive: true, maintainAspectRatio: false }
+        { 
+          responsive: true, 
+          maintainAspectRatio: false,
+          pan:{
+            enabled: true,
+            mode: 'xy',
+            speed: 10,
+          }
+        }
       )
     }
   }

@@ -19,7 +19,7 @@
               fetchSearchData()
             "
           >
-            <b-tooltip :label="ticker.name" position="is-left" animated>
+            <b-tooltip :label="ticker.name" position="is-right" animated>
               {{ ticker.symbol }}
             </b-tooltip>
           </li>

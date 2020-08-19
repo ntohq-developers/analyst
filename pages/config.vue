@@ -11,7 +11,7 @@
           </b-select>
           <b-tooltip
             label="This is the current value that is set."
-            position="is-right"
+            position="is-bottom"
           >
             <b-tag
               type="is-primary"

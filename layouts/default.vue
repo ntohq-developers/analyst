@@ -54,7 +54,7 @@ export default {
         },
         {
           title: 'Settings',
-          icon: 'source',
+          icon: 'table-edit',
           to: { name: 'config' }
         }
       ]

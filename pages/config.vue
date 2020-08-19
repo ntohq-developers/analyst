@@ -26,7 +26,7 @@
     <div class="section" style="margin-top: 15px;">
       <h2 class="is-2 title has-text-centered">Options</h2>
       <b-field>
-        <b-switch v-model="quickLink">Quick Links</b-switch>
+        <b-switch v-model="quickLink">Quick Link</b-switch>
       </b-field>
     </div>
   </section>

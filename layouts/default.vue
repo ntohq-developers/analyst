@@ -18,7 +18,10 @@
       </div>
     </nav>
 
-    <section class="main-content columns">
+    <section
+      class="main-content columns"
+      style="margin-left: auto; margin-right: auto; max-width: 125em;"
+    >
       <aside class="column is-2 section">
         <p class="menu-label is-hidden-touch">
           General

@@ -48,6 +48,11 @@ export default {
           title: 'Home',
           icon: 'home',
           to: { name: 'index' }
+        },
+        {
+          title: 'Settings',
+          icon: 'source',
+          to: { name: 'config' }
         }
       ]
     }

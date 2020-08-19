@@ -47,6 +47,9 @@ export default {
     '@nuxtjs/dotenv',
     '@nuxtjs/proxy'
   ],
+  buefy: {
+    materialDesignIcons: true
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
@@ -62,5 +65,5 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
-  },
+  }
 }

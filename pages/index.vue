@@ -33,41 +33,53 @@
       ></points-chart>
       <div class="tile is-parent">
         <div class="tile is-child is-vertical">
-          <b-button @click="fetchStockData" style="margin-bottom: 2em;">Fetch Data</b-button>
-        <b-field label="Period">
-          <b-select v-model="period">
-            <option value="max">Max</option>
-            <option value="10y">Ten years</option>
-            <option value="5y">Five years</option>
-            <option value="2y">Two years</option>
-            <option value="1y">One year</option>
-            <option value="6mo">Six months</option>
-            <option value="3mo">Three months</option>
-            <option value="1mo">One month</option>
-            <option value="1wk">One week</option>
-            <option value="5d">Five days</option>
-            <option value="1d">One day</option>
-          </b-select>
-        </b-field>
-        <b-field label="Interval">
-          <b-select v-model="interval">
-            <option value="3mo">Three months</option>
-            <option value="1mo">One month</option>
-            <option value="1wk">One week</option>
-            <option value="5d">Five days</option>
-            <option value="1d">One day</option>
-            <option value="1h">One hour</option>
-            <option value="30m">Thirty minutes</option>
-            <option value="15m">Fifteen minutes</option>
-            <option value="5m">Five minutes</option>
-            <option value="2m">Two minutes</option>
-            <option value="1m">One minutes</option>
-          </b-select>
-        </b-field>
+          <b-button
+            style="margin-bottom: 2em;"
+            type="is-primary"
+            @click="quickLink"
+            >Quick Link</b-button
+          >
+          <b-field label="Period">
+            <b-select v-model="period">
+              <option value="max">Max</option>
+              <option value="10y">Ten years</option>
+              <option value="5y">Five years</option>
+              <option value="2y">Two years</option>
+              <option value="1y">One year</option>
+              <option value="6mo">Six months</option>
+              <option value="3mo">Three months</option>
+              <option value="1mo">One month</option>
+              <option value="1wk">One week</option>
+              <option value="5d">Five days</option>
+              <option value="1d">One day</option>
+            </b-select>
+          </b-field>
+          <b-field label="Interval">
+            <b-select v-model="interval">
+              <option value="3mo">Three months</option>
+              <option value="1mo">One month</option>
+              <option value="1wk">One week</option>
+              <option value="5d">Five days</option>
+              <option value="1d">One day</option>
+              <option value="1h">One hour</option>
+              <option value="30m">Thirty minutes</option>
+              <option value="15m">Fifteen minutes</option>
+              <option value="5m">Five minutes</option>
+              <option value="2m">Two minutes</option>
+              <option value="1m">One minutes</option>
+            </b-select>
+          </b-field>
+          <b-button style="margin-top: 1em;" @click="fetchStockData"
+            >Fetch Data</b-button
+          >
         </div>
       </div>
       <div class="section cards">
-        <b-button @click="fetchNewsData" style="margin-top: 2em; margin-bottom: 2em;">Fetch News</b-button>
+        <b-button
+          style="margin-top: 2em; margin-bottom: 2em;"
+          @click="fetchNewsData"
+          >Fetch News</b-button
+        >
         <div v-for="article in articles" :key="article.title" class="card">
           <div class="card-image">
             <figure class="image">
@@ -102,7 +114,14 @@ const unknownErrorNotification = errorNotificationFactory(
 const serverErrorNotification = errorNotificationFactory(
   'Internal server error!'
 )
-
+const quickLinkBrokers = {
+  Robinhood: 'https://robinhood.com/stocks/{tiker}',
+  'TD-Ameritrade':
+    'https://invest.ameritrade.com/grid/p/site#r=jPage/https://research.ameritrade.com/grid/wwws/research/stocks/summary?symbol={tiker}',
+  Webull: 'https://app.webull.com/trade?source=seo-google-quote',
+  eTrade:
+    'https://www.etrade.wallst.com/v1/stocks/snapshot/snapshot.asp?symbol={tiker}'
+}
 export default {
   name: 'HomePage',
   components: {
@@ -128,7 +147,7 @@ export default {
         period: this.period,
         interval: this.interval
       })
-      
+
       const data = await this.$axios.$get(query)
 
       this.chartLabel = this.tickerInput
@@ -141,14 +160,14 @@ export default {
         url: `https://analyst.herokuapp.com/searchQuery/?`,
         ticker: this.tickerInput
       })
-      
+
       try {
-        this.searchResults = (await this.$axios.$get(query))['ticker_data']
+        this.searchResults = (await this.$axios.$get(query)).ticker_data
       } catch (error) {
         switchcaseF({
           500: serverErrorNotification
         })(unknownErrorNotification)(error.response.status)
-      } 
+      }
     },
 
     async fetchNewsData() {
@@ -164,6 +183,29 @@ export default {
         switchcaseF({
           500: serverErrorNotification
         })(unknownErrorNotification)(error.response.status)
+      }
+    },
+
+    quickLink() {
+      if (
+        localStorage.user_broker &&
+        localStorage.quick_link &&
+        localStorage.quick_link === 'true'
+      ) {
+        let brokerUrl = quickLinkBrokers[localStorage.user_broker]
+        if (brokerUrl !== undefined || brokerUrl !== null || brokerUrl !== '') {
+          if (this.tickerInput !== undefined || this.tickerInput !== '') {
+            brokerUrl = brokerUrl.replace('{tiker}', this.tickerInput)
+            window.open(brokerUrl, '_blank')
+          }
+        }
+      } else if (localStorage.user_broker && !localStorage.quick_link) {
+        alert('Turn on quick link')
+      } else if (
+        (!localStorage.user_broker && !localStorage.quick_link) ||
+        localStorage.user_broker
+      ) {
+        alert('setup')
       }
     }
   }

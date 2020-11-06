@@ -57,8 +57,6 @@ export default {
           type: 'category',
           labels: {
             formatter(val) {
-              // May need to add if statments for more robust formating
-              // console.warn(new Date(val).get)
               return dayjs(val).format('MMM DD HH:mm')
             }
           }
@@ -88,7 +86,6 @@ export default {
     CleanStockData(data, labels, chartType) {
       const newData = []
       if (chartType === 'line') {
-        console.warn(chartType)
         for (let i = 0; i < labels.length; i++) {
           newData.push({
             x: new Date(labels[i]).toDateString(),
@@ -110,7 +107,6 @@ export default {
       }
     },
     UpdateChartType(newChartType) {
-      console.warn(this.labels)
       this.$refs.chart.updateOptions({
         title: {
           text: this.companyName,

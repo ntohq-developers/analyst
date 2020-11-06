@@ -6,6 +6,7 @@
           <b-input
             v-model="tickerInput"
             type="text"
+            style="max-width: 200px;"
             @input="fetchSearchData"
           ></b-input>
         </b-field>
@@ -25,12 +26,38 @@
           </li>
         </ul>
       </div>
-      <points-chart
-        :input-data="data"
-        :labels="labels"
-        :chart-name="chartLabel"
-        class="chart section"
-      ></points-chart>
+      <div style="margin-bottom: 15px; flex: 3;">
+        <TestChart
+          :cc-type="chartTypes[currentStyle]"
+          :chart-name="chartLabel"
+          :tiker-name="tickerInput"
+          :labels="labels"
+          :input-data="data"
+        ></TestChart>
+        <div>
+          <b-dropdown
+            v-model="currentStyle"
+            :scrollable="true"
+            aria-role="list"
+            mobile-modal="true"
+          >
+            <button slot="trigger" class="button is-primary" type="button">
+              <template>
+                <span>{{ currentStyle }}</span>
+              </template>
+              <b-icon icon="menu-down"></b-icon>
+            </button>
+            <b-dropdown-item
+              v-for="(value, name) in chartTypes"
+              :key="name"
+              :value="name"
+              aria-role="listitem"
+            >
+              <span>{{ name }}</span>
+            </b-dropdown-item>
+          </b-dropdown>
+        </div>
+      </div>
       <div class="tile is-parent">
         <div class="tile is-child is-vertical">
           <b-button
@@ -103,7 +130,7 @@
 </template>
 
 <script>
-import PointsChart from '@/components/charts/PointsChart'
+import TestChart from '@/components/charts/ApexChart'
 import { buildRequest } from '@/util/request.js'
 import { switchcaseF } from '@/util/switchcase.js'
 import { errorNotificationFactory } from '@/util/notification.js'
@@ -122,10 +149,11 @@ const quickLinkBrokers = {
   eTrade:
     'https://www.etrade.wallst.com/v1/stocks/snapshot/snapshot.asp?symbol={tiker}'
 }
+
 export default {
   name: 'HomePage',
   components: {
-    PointsChart
+    TestChart
   },
   data() {
     return {
@@ -136,7 +164,9 @@ export default {
       searchResults: [],
       period: '',
       interval: '',
-      articles: []
+      articles: [],
+      currentStyle: 'Line Chart',
+      chartTypes: { 'Line Chart': 'line', 'Candle Stick Chart': 'candlestick' }
     }
   },
   methods: {
@@ -147,12 +177,10 @@ export default {
         period: this.period,
         interval: this.interval
       })
-
       const data = await this.$axios.$get(query)
-
       this.chartLabel = this.tickerInput
       this.labels = Object.keys(data)
-      this.data = Object.values(data).map((timestamp) => timestamp[0])
+      this.data = Object.values(data)
     },
 
     async fetchSearchData() {
@@ -223,5 +251,10 @@ export default {
 
 .chart {
   height: 22em;
+}
+a.dropdown-item.is-active span,
+.dropdown .dropdown-menu .has-link a.is-active span,
+button.dropdown-item.is-active span {
+  color: white;
 }
 </style>

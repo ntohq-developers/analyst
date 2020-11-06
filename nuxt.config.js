@@ -27,7 +27,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [{ src: '~/plugins/vue-apexchart.js', ssr: false }],
   /*
    ** Nuxt.js dev-modules
    */
@@ -64,6 +64,7 @@ export default {
     /*
      ** You can extend webpack config here
      */
+    vendor: ['vue-apexchart'],
     extend(config, ctx) {}
   }
 }

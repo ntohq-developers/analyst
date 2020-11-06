@@ -13,6 +13,7 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 
 import nuxt_plugin_axios_94de6728 from 'nuxt_plugin_axios_94de6728' // Source: .\\axios.js (mode: 'all')
 import nuxt_plugin_buefy_776fcbbd from 'nuxt_plugin_buefy_776fcbbd' // Source: .\\buefy.js (mode: 'all')
+import nuxt_plugin_vueapexchart_0ea3e8d8 from 'nuxt_plugin_vueapexchart_0ea3e8d8' // Source: ..\\plugins\\vue-apexchart.js (mode: 'client')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -157,6 +158,10 @@ async function createApp (ssrContext) {
 
   if (typeof nuxt_plugin_buefy_776fcbbd === 'function') {
     await nuxt_plugin_buefy_776fcbbd(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_vueapexchart_0ea3e8d8 === 'function') {
+    await nuxt_plugin_vueapexchart_0ea3e8d8(app.context, inject)
   }
 
   // If server-side, wait for async component to be resolved first

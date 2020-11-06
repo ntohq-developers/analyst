@@ -31,6 +31,7 @@
           :cc-type="chartTypes[currentStyle]"
           :chart-name="chartLabel"
           :tiker-name="tickerInput"
+          :company-name="companyName"
           :labels="labels"
           :input-data="data"
         ></TestChart>

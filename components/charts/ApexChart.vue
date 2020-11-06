@@ -21,6 +21,10 @@ export default {
       type: String,
       default: ''
     },
+    companyName: {
+      type: String,
+      default: ''
+    },
     chartName: {
       type: String,
       default: 'Default Chart'
@@ -46,7 +50,7 @@ export default {
         },
         colors: ['#ed5a5a', '#17202A'],
         title: {
-          text: 'CandleStick Chart',
+          text: 'Analyst Chart',
           align: 'left'
         },
         xaxis: {
@@ -108,6 +112,10 @@ export default {
     UpdateChartType(newChartType) {
       console.warn(this.labels)
       this.$refs.chart.updateOptions({
+        title: {
+          text: this.companyName,
+          align: 'left'
+        },
         series: [
           {
             name: this.tikerName,
@@ -119,6 +127,10 @@ export default {
     },
     UpdateChart(newData, newLabels, chartType) {
       this.$refs.chart.updateOptions({
+        title: {
+          text: this.companyName,
+          align: 'left'
+        },
         series: [
           {
             name: this.tikerName,

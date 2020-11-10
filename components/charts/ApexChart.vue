@@ -57,6 +57,8 @@ export default {
           type: 'category',
           labels: {
             formatter(val) {
+              // May need to add if statments for more robust formating
+              // console.warn(new Date(val).get)
               return dayjs(val).format('MMM DD HH:mm')
             }
           }

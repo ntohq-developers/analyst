@@ -7,7 +7,7 @@
             v-model="tickerInput"
             type="text"
             style="max-width: 200px;"
-            @input="fetchSearchData"
+            @input="debounceInput"
           ></b-input>
         </b-field>
         <ul class="tile is-child">
@@ -136,6 +136,7 @@ import { buildRequest } from '@/util/request.js'
 import { switchcaseF } from '@/util/switchcase.js'
 import { errorNotificationFactory } from '@/util/notification.js'
 
+const _ = require('lodash')
 const unknownErrorNotification = errorNotificationFactory(
   `Unknown error! Refresh the page and try again.`
 )
@@ -171,6 +172,9 @@ export default {
     }
   },
   methods: {
+    debounceInput: _.debounce(function() {
+      this.fetchSearchData()
+    }, 500),
     async fetchStockData() {
       const query = buildRequest({
         url: `https://analyst.herokuapp.com/stockQuery/?`,

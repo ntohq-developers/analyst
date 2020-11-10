@@ -20,6 +20,7 @@
     "chart.js": "^2.9.3",
     "chartjs-plugin-zoom": "^0.7.7",
     "dayjs": "^1.9.4",
+    "lodash": "^4.17.20",
     "nuxt": "^2.0.0",
     "nuxt-buefy": "^0.3.2",
     "vue-apexcharts": "^1.6.0",

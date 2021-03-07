@@ -125,7 +125,7 @@
             >Fetch</b-button
           >
           <section class="box tile" style="padding: 20px;">
-            <div style="max-height: 900px; overflow-y: scroll;">
+            <div style="max-height: 100vh; overflow-y: scroll;">
               <div
                 v-for="article in articles"
                 :key="article.title"
@@ -138,7 +138,7 @@
                 </div>
                 <div class="card-content">
                   <div class="media">
-                    <div class="media-content">
+                    <div class="media-content" style="overflow: hidden;">
                       <p class="title is-4">{{ article.title }}</p>
                     </div>
                   </div>

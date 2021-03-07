@@ -12,36 +12,32 @@
       aria-label="main navigation"
     >
       <div class="navbar-brand">
-        <a class="navbar-item" href="/">
-          ANALYST
-        </a>
+        <a class="navbar-item" href="/"> ANALYST </a>
       </div>
     </nav>
     <div class="page-wrapper">
-      <div style="flex: 6">
-        <section class="main-content columns">
-          <!-- style="max-width: 125em; margin-left: auto; margin-right: auto" -->
-          <aside class="column is-2 section">
-            <p class="menu-label is-hidden-touch">
-              General
-            </p>
-            <ul class="menu-list">
-              <li v-for="(item, key) of items" :key="key">
-                <nuxt-link :to="item.to" exact-active-class="is-active">
-                  <b-icon :icon="item.icon" /> {{ item.title }}
-                </nuxt-link>
-              </li>
-            </ul>
-          </aside>
+      <section class="main-content columns" style="flex: 6;">
+        <aside class="column is-2 section">
+          <p class="menu-label is-hidden-touch">General</p>
+          <ul class="menu-list">
+            <li v-for="(item, key) of items" :key="key">
+              <nuxt-link :to="item.to" exact-active-class="is-active">
+                <b-icon :icon="item.icon" /> {{ item.title }}
+              </nuxt-link>
+            </li>
+          </ul>
+        </aside>
 
-          <div class="container column is-10">
-            <nuxt />
-          </div>
-        </section>
-      </div>
+        <div
+          class="container column is-10"
+          style="display: flex; flex-direction: column;"
+        >
+          <nuxt />
+        </div>
+      </section>
       <footer
         class="footer level has-background-primary has-text-centered has-text-white box"
-        style="padding: 20px; flex: 0.5;"
+        style="padding: 20px; flex: 0.5"
       >
         <div class="level-left">
           <p class="level-item">Analyst 2021&copy;</p>
@@ -57,7 +53,7 @@
             Written with
             <a
               href="https://nuxtjs.org/"
-              style="color: rgb(255, 100, 213); padding-left: 5px;"
+              style="color: rgb(255, 100, 213); padding-left: 5px"
               >nuxt.js</a
             >
           </p>
@@ -92,8 +88,32 @@ export default {
           title: 'Settings',
           icon: 'user-cog',
           to: { name: 'config' }
+        },
+        {
+          title: 'More',
+          icon: 'info-circle',
+          to: { name: 'about' }
         }
       ]
+    }
+  },
+  created() {
+    this.pushNotifications()
+  },
+  methods: {
+    pushNotifications() {
+      this.danger()
+    },
+    danger() {
+      this.$buefy.notification.open({
+        message: `Welcome to Analyst!<br> If <b>you</b> continue to use this website, you are accepting to <ol><li>1) the use of cookies,</li> <li>2) the fact that this software is not a professional advisor,<li> and<li>3) The use of this site at your own risk.</li></lo><br> <p>Happy Trading!<br><i>ntohq and sergix</i></p>`,
+        position: 'is-bottom-right',
+        closable: true,
+        indefinite: true,
+        type: 'is-warning',
+        hasIcon: true,
+        icon: 'exclamation-triangle'
+      })
     }
   }
 }

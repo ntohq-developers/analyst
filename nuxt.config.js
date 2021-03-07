@@ -66,7 +66,9 @@ export default {
         'faCaretDown',
         'faSlidersH',
         'faAngleRight',
-        'faLink'
+        'faLink',
+        'faInfoCircle',
+        'faExclamationTriangle'
       ] // include only icons required by your project
     }
   },

@@ -12,7 +12,19 @@
       aria-label="main navigation"
     >
       <div class="navbar-brand">
-        <a class="navbar-item" href="/"> ANALYST </a>
+        <a
+          class="navbar-item"
+          href="/"
+          style="padding-top: 0; padding-bottom: 0;"
+        >
+          <img
+            src="@/static/Analyst_Logo_Transparent.png"
+            width="26"
+            height="26"
+            style="padding: 5px;"
+          />
+          <h1 class="title is-6 has-text-white">analyst</h1>
+        </a>
       </div>
     </nav>
     <div class="page-wrapper">

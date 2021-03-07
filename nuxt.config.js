@@ -68,7 +68,9 @@ export default {
         'faAngleRight',
         'faLink',
         'faInfoCircle',
-        'faExclamationTriangle'
+        'faExclamationTriangle',
+        'faHandshake',
+        'faPalette'
       ] // include only icons required by your project
     }
   },

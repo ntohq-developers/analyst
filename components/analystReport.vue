@@ -9,7 +9,7 @@
         <h1 class="title is-6"><u>Machine Learning Stats</u></h1>
       </b-tab-item>
       <b-tab-item label="News" icon="">
-        <slot />
+        <slot/>
       </b-tab-item>
       <b-tab-item label="Settings" icon="gear">
         <h1 class="title is-6"><u>Settings</u></h1>

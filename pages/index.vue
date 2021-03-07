@@ -256,7 +256,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.cards {
+/* .cards {
   max-width: 22em;
 }
 
@@ -266,7 +266,7 @@ export default {
 
 .chart {
   height: 22em;
-}
+} */
 a.dropdown-item.is-active span,
 .dropdown .dropdown-menu .has-link a.is-active span,
 button.dropdown-item.is-active span {

@@ -1,3 +1,9 @@
+<!--
+   Authors: Wesley Ford (ntohq) 
+            Sergix
+   Date: 03/07/2021
+ -->
+
 <template>
   <section class="section">
     <div>
@@ -51,7 +57,7 @@
                 <template>
                   <span>{{ currentStyle }}</span>
                 </template>
-                <b-icon icon="menu-down"></b-icon>
+                <b-icon icon="caret-down"></b-icon>
               </button>
               <b-dropdown-item
                 v-for="(value, name) in chartTypes"
@@ -68,6 +74,7 @@
           <div class="tile is-child is-vertical">
             <b-button
               style="margin-bottom: 2em;"
+              icon-left="link"
               type="is-primary"
               @click="quickLink"
               >Quick Link</b-button
@@ -109,29 +116,41 @@
         </div>
       </div>
       <report>
-        <aside class="section cards">
+        <aside class="section cards" style="padding-top:0;">
           <b-button
             style="margin-top: 2em; margin-bottom: 2em;"
+            icon-left="angle-right"
+            pack="fas"
             @click="fetchNewsData"
-            >Fetch News</b-button
+            >Fetch</b-button
           >
-          <div v-for="article in articles" :key="article.title" class="card">
-            <div class="card-image">
-              <figure class="image">
-                <img :src="article.urlImage" />
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="title is-4">{{ article.title }}</p>
+          <section class="box tile" style="padding: 20px;">
+            <div style="max-height: 900px; overflow-y: scroll;">
+              <div
+                v-for="article in articles"
+                :key="article.title"
+                class="card"
+              >
+                <div class="card-image">
+                  <figure class="image">
+                    <img :src="article.urlImage" />
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-content">
+                      <p class="title is-4">{{ article.title }}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <a :href="article.url" class="card-footer-item"
+                    >Open article</a
+                  >
                 </div>
               </div>
             </div>
-            <div class="card-footer">
-              <a :href="article.url" class="card-footer-item">Open article</a>
-            </div>
-          </div>
+          </section>
         </aside>
       </report>
     </div>

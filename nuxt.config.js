@@ -33,7 +33,8 @@ export default {
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/fontawesome'
   ],
   /*
    ** Nuxt.js modules
@@ -41,6 +42,7 @@ export default {
   modules: [
     // Doc: https://buefy.github.io/#/documentation
     'nuxt-buefy',
+    ['nuxt-buefy', { css: true, materialDesignIcons: true, iconfont: 'mdi' }],
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
@@ -48,7 +50,25 @@ export default {
     '@nuxtjs/proxy'
   ],
   buefy: {
-    materialDesignIcons: true
+    defaultIconPack: 'fas',
+    defaultIconComponent: 'FontAwesomeIcon',
+    materialDesignIcons: false
+  },
+  fontawesome: {
+    icons: {
+      // solid: true,  // include the full pack in the bundle, not recommended
+      solid: [
+        'faHome',
+        'faUserCog',
+        'faProjectDiagram',
+        'faNewspaper',
+        'faChartPie',
+        'faCaretDown',
+        'faSlidersH',
+        'faAngleRight',
+        'faLink'
+      ] // include only icons required by your project
+    }
   },
   /*
    ** Axios module configuration

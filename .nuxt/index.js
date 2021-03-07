@@ -13,6 +13,7 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 
 import nuxt_plugin_axios_2a024aaf from 'nuxt_plugin_axios_2a024aaf' // Source: .\\axios.js (mode: 'all')
 import nuxt_plugin_buefy_283d6c00 from 'nuxt_plugin_buefy_283d6c00' // Source: .\\buefy.js (mode: 'all')
+import nuxt_plugin_fontawesome_7989c29e from 'nuxt_plugin_fontawesome_7989c29e' // Source: .\\fontawesome.js (mode: 'all')
 import nuxt_plugin_vueapexchart_0ea3e8d8 from 'nuxt_plugin_vueapexchart_0ea3e8d8' // Source: ..\\plugins\\vue-apexchart.js (mode: 'client')
 
 // Component: <ClientOnly>
@@ -158,6 +159,10 @@ async function createApp (ssrContext) {
 
   if (typeof nuxt_plugin_buefy_283d6c00 === 'function') {
     await nuxt_plugin_buefy_283d6c00(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_fontawesome_7989c29e === 'function') {
+    await nuxt_plugin_fontawesome_7989c29e(app.context, inject)
   }
 
   if (process.client && typeof nuxt_plugin_vueapexchart_0ea3e8d8 === 'function') {

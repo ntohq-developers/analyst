@@ -1,3 +1,8 @@
+<!--
+   Author: Sergix
+   Date: 03/07/2021
+ -->
+
 <template>
   <svg
     class="NuxtLogo"

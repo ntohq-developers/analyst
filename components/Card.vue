@@ -1,3 +1,8 @@
+<!--
+   Author: Sergix
+   Date: 03/07/2021
+ -->
+
 <template>
   <div class="tile is-parent is-vertical">
     <div class="card">

@@ -1,7 +1,7 @@
 <template>
   <section>
     <h1 class="title is-6"><u>Analyst Report</u></h1>
-    <b-tabs position="is-centered" class="block">
+    <b-tabs position="is-centered" class="chart-areaspline">
       <b-tab-item label="Stats" icon="line-chart">
         <h1 class="title is-6"><u>Analysis</u></h1>
       </b-tab-item>
@@ -9,7 +9,7 @@
         <h1 class="title is-6"><u>Machine Learning Stats</u></h1>
       </b-tab-item>
       <b-tab-item label="News" icon="">
-        <slot/>
+        <slot />
       </b-tab-item>
       <b-tab-item label="Settings" icon="gear">
         <h1 class="title is-6"><u>Settings</u></h1>

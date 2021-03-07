@@ -11,8 +11,8 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 
 /* Plugins */
 
-import nuxt_plugin_axios_94de6728 from 'nuxt_plugin_axios_94de6728' // Source: .\\axios.js (mode: 'all')
-import nuxt_plugin_buefy_776fcbbd from 'nuxt_plugin_buefy_776fcbbd' // Source: .\\buefy.js (mode: 'all')
+import nuxt_plugin_axios_2a024aaf from 'nuxt_plugin_axios_2a024aaf' // Source: .\\axios.js (mode: 'all')
+import nuxt_plugin_buefy_283d6c00 from 'nuxt_plugin_buefy_283d6c00' // Source: .\\buefy.js (mode: 'all')
 import nuxt_plugin_vueapexchart_0ea3e8d8 from 'nuxt_plugin_vueapexchart_0ea3e8d8' // Source: ..\\plugins\\vue-apexchart.js (mode: 'client')
 
 // Component: <ClientOnly>
@@ -152,12 +152,12 @@ async function createApp (ssrContext) {
 
   // Plugin execution
 
-  if (typeof nuxt_plugin_axios_94de6728 === 'function') {
-    await nuxt_plugin_axios_94de6728(app.context, inject)
+  if (typeof nuxt_plugin_axios_2a024aaf === 'function') {
+    await nuxt_plugin_axios_2a024aaf(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_buefy_776fcbbd === 'function') {
-    await nuxt_plugin_buefy_776fcbbd(app.context, inject)
+  if (typeof nuxt_plugin_buefy_283d6c00 === 'function') {
+    await nuxt_plugin_buefy_283d6c00(app.context, inject)
   }
 
   if (process.client && typeof nuxt_plugin_vueapexchart_0ea3e8d8 === 'function') {

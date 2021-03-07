@@ -127,6 +127,7 @@
         </div>
       </div>
     </div>
+    <report></report>
   </section>
 </template>
 
@@ -135,6 +136,7 @@ import TestChart from '@/components/charts/ApexChart'
 import { buildRequest } from '@/util/request.js'
 import { switchcaseF } from '@/util/switchcase.js'
 import { errorNotificationFactory } from '@/util/notification.js'
+import report from '~/components/analystReport'
 
 const _ = require('lodash')
 const unknownErrorNotification = errorNotificationFactory(
@@ -155,7 +157,8 @@ const quickLinkBrokers = {
 export default {
   name: 'HomePage',
   components: {
-    TestChart
+    TestChart,
+    report
   },
   data() {
     return {

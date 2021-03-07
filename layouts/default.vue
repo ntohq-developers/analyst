@@ -53,6 +53,11 @@ export default {
           to: { name: 'index' }
         },
         {
+          title: 'popularity',
+          icon: 'car-outline',
+          to: { name: 'pop' }
+        },
+        {
           title: 'Settings',
           icon: 'table-edit',
           to: { name: 'config' }

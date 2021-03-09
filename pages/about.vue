@@ -1,5 +1,10 @@
+<!--
+   Author: Wesley Ford (ntohq)
+   Date: 03/08/2021
+ -->
+
 <template>
-  <section class="box" style="padding: 1.5vh; flex: 1;">
+  <section style="padding: 1.5vh; flex: 1;">
     <h1 class="title is-3">About Analyst</h1>
     <p class="has-text-black">
       Analyst is a website that analyzes stocks using Charts, Computational
@@ -16,6 +21,9 @@
               src="https://avatars.githubusercontent.com/u/11604664?s=460&u=6e747319287b4a7c22916314db3526ab89e181b9&v=4"
               style="border-radius: 50%; height: 100px;"
             />
+            <h1 class="title is-6">
+              Wesley Ford (ntohq)<i class="has-text-primary"> [ developer ]</i>
+            </h1>
           </div>
           <p>
             Just an average programmer🧙‍♂️. Web Development, Python 3, C#/C++, and
@@ -28,6 +36,9 @@
               src="https://avatars.githubusercontent.com/u/20588081?s=400&u=917bfc4e1fbd964293059459b13e080dcaece51e&v=4"
               style="border-radius: 50%; height: 100px;"
             />
+            <h1 class="title is-6">
+              Sergix<i class="has-text-primary"> [ front-end developer ]</i>
+            </h1>
           </div>
           <p>
             A pseudonormal programmer. Web Development 🌐, UI/UX 👨‍🎨, and C/C++
@@ -36,7 +47,7 @@
         </div>
       </div>
     </section>
-    <section style="margin-top: 30px; padding: 20px;">
+    <section style="margin-top: 20px; padding: 20px;">
       <h1 class="title is-3 has-text-centered">Powered by:</h1>
       <div style="display: flex; flex-direction: column;">
         <cite

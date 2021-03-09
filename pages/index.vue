@@ -116,42 +116,58 @@
         </div>
       </div>
       <report>
-        <aside class="section cards" style="padding-top:0;">
-          <b-button
-            style="margin-top: 2em; margin-bottom: 2em;"
-            icon-left="angle-right"
-            pack="fas"
-            @click="fetchNewsData"
-            >Fetch</b-button
-          >
-          <section class="box tile" style="padding: 20px;">
-            <div style="max-height: 100vh; overflow-y: scroll;">
-              <div
-                v-for="article in articles"
-                :key="article.title"
-                class="card"
-              >
-                <div class="card-image">
-                  <figure class="image">
-                    <img :src="article.urlImage" />
-                  </figure>
-                </div>
-                <div class="card-content">
-                  <div class="media">
-                    <div class="media-content" style="overflow: hidden;">
-                      <p class="title is-4">{{ article.title }}</p>
+        <b-tab-item label="Stats" icon="chart-pie">
+          <h1 class="title is-6"><u>Analysis</u></h1>
+        </b-tab-item>
+        <b-tab-item label="News" icon="newspaper" pack="far">
+          <h1 class="title is-6"><u>Stock News</u></h1>
+          <p>
+            <b>Note:</b>
+            <i
+              >Generic news will be fetched if the chart ticker is not filled
+              in.</i
+            >
+          </p>
+          <aside class="section cards" style="padding-top:0;">
+            <b-button
+              style="margin-top: 2em; margin-bottom: 2em;"
+              icon-left="angle-right"
+              pack="fas"
+              @click="fetchNewsData"
+              >Fetch</b-button
+            >
+            <section class="box tile" style="padding: 20px;">
+              <div style="max-height: 100vh; overflow-y: scroll;">
+                <div
+                  v-for="article in articles"
+                  :key="article.title"
+                  class="card"
+                >
+                  <div class="card-image">
+                    <figure class="image">
+                      <img :src="article.urlImage" />
+                    </figure>
+                  </div>
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-content" style="overflow: hidden;">
+                        <p class="title is-4">{{ article.title }}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="card-footer">
-                  <a :href="article.url" class="card-footer-item"
-                    >Open article</a
-                  >
+                  <div class="card-footer">
+                    <a :href="article.url" class="card-footer-item"
+                      >Open article</a
+                    >
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
-        </aside>
+            </section>
+          </aside>
+        </b-tab-item>
+        <b-tab-item label="ML" icon="project-diagram">
+          <h1 class="title is-6"><u>Machine Learning Stats</u></h1>
+        </b-tab-item>
       </report>
     </div>
   </section>

@@ -76,6 +76,9 @@
 </template>
 
 <style>
+body {
+  overflow-x: hidden;
+}
 .page-wrapper {
   display: flex;
   min-height: 100vh;
@@ -118,7 +121,7 @@ export default {
     },
     danger() {
       this.$buefy.notification.open({
-        message: `Welcome to Analyst!<br> If <b>you</b> continue to use this website, you are accepting to <ol><li>1) the use of cookies,</li> <li>2) the fact that this software is not a professional advisor,<li> and<li>3) The use of this site at your own risk.</li></lo><br> <p>Happy Trading!<br><i>ntohq and sergix</i></p>`,
+        message: `Welcome to Analyst!<br> If <b>you</b> continue to use this website, you are accepting to <ol><li>the use of cookies,</li> <li>the fact that this software is not a professional advisor,</li>and <li>The use of this site at your own risk.</li></lo><br> <p>Happy Trading!<br><i>    ntohq and sergix</i></p>`,
         position: 'is-bottom-right',
         closable: true,
         indefinite: true,

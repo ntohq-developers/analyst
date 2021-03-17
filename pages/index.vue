@@ -28,7 +28,7 @@
               @click="
                 tickerInput = ticker.symbol
                 companyName = ticker.name
-                fetchSearchData()
+                fetchSearchData().then(getAnalystReport())
               "
             >
               <b-tooltip :label="ticker.name" position="is-right" animated>
@@ -118,9 +118,6 @@
       <section style="margin-top: 5vh">
         <b-tabs position="is-centered">
           <b-tab-item label="Stats" icon="chart-pie">
-            <h1 class="title is-6">
-              <a @click="getAnalystReport"><u>Get Analysis</u></a>
-            </h1>
             <div :style="{ 'margin-bottom': '75px', display: displayReport }">
               <h1 class="title has-text-centered">{{ analystReport.name }}</h1>
               <analystStats :content="report"></analystStats>

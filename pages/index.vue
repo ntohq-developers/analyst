@@ -309,7 +309,7 @@ export default {
     },
     async getAnalystReport() {
       const query = buildRequest({
-        url: `http://127.0.0.1:5000/analyst-report/?`,
+        url: `https://analyst.herokuapp.com/analyst-report/?`,
         ticker: this.tickerInput
       })
 

@@ -70,7 +70,9 @@ export default {
         'faInfoCircle',
         'faExclamationTriangle',
         'faHandshake',
-        'faPalette'
+        'faPalette',
+        'faSortUp',
+        'faSortDown'
       ] // include only icons required by your project
     }
   },

@@ -1,8 +1,3 @@
-<!--
-   Author: Wesley Ford (ntohq)
-   Date: 03/07/2021
- -->
-
 <template>
   <div>
     <p>
@@ -21,3 +16,29 @@
     </b-collapse>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    summary: {
+      type: String,
+      default: ''
+    }
+  },
+  data() {
+    return {
+      firstSummaryParagraph: 'n/a',
+      secondSummaryParagraph: ''
+    }
+  },
+  watch: {
+    summary() {
+      this.firstSummaryParagraph = this.summary.substr(
+        0,
+        this.summary.length / 3
+      )
+      this.secondSummaryParagraph = this.summary.substr(this.summary.length / 3)
+    }
+  }
+}
+</script>

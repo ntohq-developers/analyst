@@ -11,13 +11,13 @@
         <div class="tile is-parent is-vertical">
           <b-field
             class="tile is-child"
-            style="max-height:50px;"
+            style="max-height: 50px"
             label="Ticker"
           >
             <b-input
               v-model="tickerInput"
               type="text"
-              style="max-width: 200px;"
+              style="max-width: 200px"
               @input="debounceInput"
             ></b-input>
           </b-field>
@@ -37,7 +37,7 @@
             </li>
           </ul>
         </div>
-        <div style="margin-bottom: 15px; flex: 3;">
+        <div style="margin-bottom: 15px; flex: 3">
           <TestChart
             :cc-type="chartTypes[currentStyle]"
             :chart-name="chartLabel"
@@ -73,7 +73,7 @@
         <div class="tile is-parent">
           <div class="tile is-child is-vertical">
             <b-button
-              style="margin-bottom: 2em;"
+              style="margin-bottom: 2em"
               icon-left="link"
               type="is-primary"
               @click="quickLink"
@@ -109,66 +109,77 @@
                 <option value="1m">One minutes</option>
               </b-select>
             </b-field>
-            <b-button style="margin-top: 1em;" @click="fetchStockData"
+            <b-button style="margin-top: 1em" @click="fetchStockData"
               >Fetch Data</b-button
             >
           </div>
         </div>
       </div>
-      <report>
-        <b-tab-item label="Stats" icon="chart-pie">
-          <h1 class="title is-6"><u>Analysis</u></h1>
-        </b-tab-item>
-        <b-tab-item label="News" icon="newspaper" pack="far">
-          <h1 class="title is-6"><u>Stock News</u></h1>
-          <p>
-            <b>Note:</b>
-            <i
-              >Generic news will be fetched if the chart ticker is not filled
-              in.</i
-            >
-          </p>
-          <aside class="section cards" style="padding-top:0;">
-            <b-button
-              style="margin-top: 2em; margin-bottom: 2em;"
-              icon-left="angle-right"
-              pack="fas"
-              @click="fetchNewsData"
-              >Fetch</b-button
-            >
-            <section class="box tile" style="padding: 20px;">
-              <div style="max-height: 100vh; overflow-y: scroll;">
-                <div
-                  v-for="article in articles"
-                  :key="article.title"
-                  class="card"
-                >
-                  <div class="card-image">
-                    <figure class="image">
-                      <img :src="article.urlImage" />
-                    </figure>
-                  </div>
-                  <div class="card-content">
-                    <div class="media">
-                      <div class="media-content" style="overflow: hidden;">
-                        <p class="title is-4">{{ article.title }}</p>
+      <section style="margin-top: 5vh">
+        <b-tabs position="is-centered">
+          <b-tab-item label="Stats" icon="chart-pie">
+            <h1 class="title is-6">
+              <a @click="getAnalystReport"><u>Get Analysis</u></a>
+            </h1>
+            <div :style="{ 'margin-bottom': '75px', display: displayReport }">
+              <h1 class="title has-text-centered">{{ analystReport.name }}</h1>
+              <analystStats :content="report"></analystStats>
+              <p><b>Sector:</b> {{ analystReport.sector }}</p>
+              <p><b>Total Employees:</b> {{ analystReport.employees }}</p>
+              <analystSummary :summary="analystReport.summary"></analystSummary>
+            </div>
+          </b-tab-item>
+          <b-tab-item label="News" icon="newspaper" pack="far">
+            <h1 class="title is-6"><u>Stock News</u></h1>
+            <p>
+              <b>Note:</b>
+              <i
+                >Generic news will be fetched if the chart ticker is not filled
+                in.</i
+              >
+            </p>
+            <aside class="section cards" style="padding-top: 0">
+              <b-button
+                style="margin-top: 2em; margin-bottom: 2em"
+                icon-left="angle-right"
+                pack="fas"
+                @click="fetchNewsData"
+                >Fetch</b-button
+              >
+              <section class="box tile" style="padding: 20px">
+                <div style="max-height: 100vh; overflow-y: scroll">
+                  <div
+                    v-for="article in articles"
+                    :key="article.title"
+                    class="card"
+                  >
+                    <div class="card-image">
+                      <figure class="image">
+                        <img :src="article.urlImage" />
+                      </figure>
+                    </div>
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-content" style="overflow: hidden">
+                          <p class="title is-4">{{ article.title }}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="card-footer">
-                    <a :href="article.url" class="card-footer-item"
-                      >Open article</a
-                    >
+                    <div class="card-footer">
+                      <a :href="article.url" class="card-footer-item"
+                        >Open article</a
+                      >
+                    </div>
                   </div>
                 </div>
-              </div>
-            </section>
-          </aside>
-        </b-tab-item>
-        <b-tab-item label="ML" icon="project-diagram">
-          <h1 class="title is-6"><u>Machine Learning Stats</u></h1>
-        </b-tab-item>
-      </report>
+              </section>
+            </aside>
+          </b-tab-item>
+          <b-tab-item label="ML" icon="project-diagram">
+            <h1 class="title is-6"><u>Machine Learning Stats</u></h1>
+          </b-tab-item>
+        </b-tabs>
+      </section>
     </div>
   </section>
 </template>
@@ -178,7 +189,8 @@ import TestChart from '@/components/charts/ApexChart'
 import { buildRequest } from '@/util/request.js'
 import { switchcaseF } from '@/util/switchcase.js'
 import { errorNotificationFactory } from '@/util/notification.js'
-import report from '~/components/analystReport'
+import analystSummary from '@/components/businessSummary'
+import analystStats from '@/components/analystStats'
 
 const _ = require('lodash')
 const unknownErrorNotification = errorNotificationFactory(
@@ -200,7 +212,8 @@ export default {
   name: 'HomePage',
   components: {
     TestChart,
-    report
+    analystSummary,
+    analystStats
   },
   data() {
     return {
@@ -213,7 +226,15 @@ export default {
       interval: '',
       articles: [],
       currentStyle: 'Line Chart',
-      chartTypes: { 'Line Chart': 'line', 'Candle Stick Chart': 'candlestick' }
+      chartTypes: { 'Line Chart': 'line', 'Candle Stick Chart': 'candlestick' },
+      analystReport: {
+        name: '',
+        summary: '',
+        employees: '',
+        sector: ''
+      },
+      report: {},
+      displayReport: 'none'
     }
   },
   methods: {
@@ -285,6 +306,24 @@ export default {
       ) {
         alert('setup')
       }
+    },
+    async getAnalystReport() {
+      const query = buildRequest({
+        url: `http://127.0.0.1:5000/analyst-report/?`,
+        ticker: this.tickerInput
+      })
+
+      const report = await this.$axios.$get(query)
+      this.report = report
+      this.analystReport.name = report.name
+      this.analystReport.summary = report.BusinessSummary
+      this.analystReport.employees = report.employees
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+      this.analystReport.sector = report.sector
+      if (this.displayReport !== '') {
+        this.displayReport = ''
+      }
     }
   }
 }
@@ -302,6 +341,11 @@ export default {
 .chart {
   height: 22em;
 } */
+
+#more {
+  display: none;
+}
+
 a.dropdown-item.is-active span,
 .dropdown .dropdown-menu .has-link a.is-active span,
 button.dropdown-item.is-active span {

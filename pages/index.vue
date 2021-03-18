@@ -28,7 +28,11 @@
               @click="
                 tickerInput = ticker.symbol
                 companyName = ticker.name
-                fetchSearchData().then(getAnalystReport())
+                fetchSearchData().then(
+                  fetchStockData().then(
+                    getAnalystReport().then(fetchNewsData())
+                  )
+                )
               "
             >
               <b-tooltip :label="ticker.name" position="is-right" animated>
@@ -129,21 +133,7 @@
           </b-tab-item>
           <b-tab-item label="News" icon="newspaper" pack="far">
             <h1 class="title is-6"><u>Stock News</u></h1>
-            <p>
-              <b>Note:</b>
-              <i
-                >Generic news will be fetched if the chart ticker is not filled
-                in.</i
-              >
-            </p>
             <aside class="section cards" style="padding-top: 0">
-              <b-button
-                style="margin-top: 2em; margin-bottom: 2em"
-                icon-left="angle-right"
-                pack="fas"
-                @click="fetchNewsData"
-                >Fetch</b-button
-              >
               <section class="box tile" style="padding: 20px">
                 <div style="max-height: 100vh; overflow-y: scroll">
                   <div

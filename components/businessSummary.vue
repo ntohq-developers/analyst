@@ -1,43 +1,68 @@
+<!--
+   Author: Wesley Ford (ntohq)
+   Date: 03/29/2021
+ -->
+
 <template>
-  <div>
-    <p>
-      {{ firstSummaryParagraph }}
-    </p>
-    <b-collapse :open="false" position="is-bottom" aria-id="contentIdForA11y1">
+  <section>
+    <b-collapse animation="slide">
       <template #trigger="props">
-        <a aria-controls="contentIdForA11y1">
-          <b-icon :icon="!props.open ? 'sort-down' : 'sort-up'"></b-icon>
-          {{ !props.open ? 'Read More' : 'Collapse' }}
-        </a>
+        <div class="card-header" role="button">
+          <p class="card-header-title">Summary</p>
+          <a class="card-header-icon">
+            <b-icon :icon="props.open ? 'caret-up' : 'caret-down'"> </b-icon>
+          </a>
+        </div>
       </template>
-      <p>
-        {{ secondSummaryParagraph }}
-      </p>
+      <div class="card-content">
+        <div class="content">
+          <h3 class="title is-3 has-text-centered">{{ stockName }}</h3>
+          <p style="margin-bottom: 0"><b>Sector:</b> {{ buisnessSector }}</p>
+          <p style="margin-bottom: 10px">
+            <b>Total Employees:</b> {{ totalEmployees }}
+          </p>
+          {{ summaryParagraph }}
+          <slot />
+        </div>
+      </div>
     </b-collapse>
-  </div>
+  </section>
 </template>
 
 <script>
 export default {
   props: {
+    employees: {
+      type: String,
+      default: ''
+    },
+    sector: {
+      type: String,
+      default: ''
+    },
     summary: {
+      type: String,
+      default: ''
+    },
+    name: {
       type: String,
       default: ''
     }
   },
   data() {
     return {
-      firstSummaryParagraph: 'n/a',
-      secondSummaryParagraph: ''
+      summaryParagraph: 'n/a',
+      buisnessSector: '',
+      totalEmployees: '',
+      stockName: ''
     }
   },
   watch: {
     summary() {
-      this.firstSummaryParagraph = this.summary.substr(
-        0,
-        this.summary.length / 3
-      )
-      this.secondSummaryParagraph = this.summary.substr(this.summary.length / 3)
+      this.summaryParagraph = this.summary
+      this.buisnessSector = this.sector
+      this.totalEmployees = this.employees
+      this.stockName = this.name
     }
   }
 }

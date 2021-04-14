@@ -1,7 +1,9 @@
 <!--
    Authors: Wesley Ford (ntohq) 
             Sergix
-   Date: 03/07/2021
+   Date: 03/07/2020
+   Updated: 03/31/2021
+   By: Wesley Ford (ntohq)
  -->
 
 <template>
@@ -40,6 +42,9 @@
               </b-tooltip>
             </li>
           </ul>
+          <!-- </b-tab-item>
+            <b-tab-item label="By Sector"></b-tab-item>
+          </b-tabs> -->
         </div>
         <div style="margin-bottom: 15px; flex: 3">
           <TestChart
@@ -122,13 +127,15 @@
       <section style="margin-top: 5vh">
         <b-tabs position="is-centered">
           <b-tab-item label="Stats" icon="chart-pie">
-            <h1 class="title is-6"><u>Analysis</u></h1>
             <div :style="{ 'margin-bottom': '75px', display: displayReport }">
-              <h1 class="title has-text-centered">{{ analystReport.name }}</h1>
-              <analystStats :content="report"></analystStats>
-              <p><b>Sector:</b> {{ analystReport.sector }}</p>
-              <p><b>Total Employees:</b> {{ analystReport.employees }}</p>
-              <analystSummary :summary="analystReport.summary"></analystSummary>
+              <analystSummary
+                :summary="analystReport.summary"
+                :sector="analystReport.sector"
+                :employees="analystReport.employees"
+                :name="analystReport.name"
+              >
+                <analystStats :content="report"></analystStats>
+              </analystSummary>
             </div>
           </b-tab-item>
           <b-tab-item label="News" icon="newspaper" pack="far">
@@ -173,6 +180,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import TestChart from '@/components/charts/ApexChart'
 import { buildRequest } from '@/util/request.js'
 import { switchcaseF } from '@/util/switchcase.js'
@@ -187,14 +195,6 @@ const unknownErrorNotification = errorNotificationFactory(
 const serverErrorNotification = errorNotificationFactory(
   'Internal server error!'
 )
-const quickLinkBrokers = {
-  Robinhood: 'https://robinhood.com/stocks/{tiker}',
-  'TD-Ameritrade':
-    'https://invest.ameritrade.com/grid/p/site#r=jPage/https://research.ameritrade.com/grid/wwws/research/stocks/summary?symbol={tiker}',
-  Webull: 'https://app.webull.com/trade?source=seo-google-quote',
-  eTrade:
-    'https://www.etrade.wallst.com/v1/stocks/snapshot/snapshot.asp?symbol={tiker}'
-}
 
 export default {
   name: 'HomePage',
@@ -225,6 +225,13 @@ export default {
       displayReport: 'none'
     }
   },
+  computed: {
+    ...mapGetters(['getQuickLinkSet'])
+  },
+  // mounted() {
+  //   // eslint-disable-next-line
+  //   console.warn(this)
+  // },
   methods: {
     debounceInput: _.debounce(function() {
       this.fetchSearchData()
@@ -274,26 +281,26 @@ export default {
     },
 
     quickLink() {
-      if (
-        localStorage.user_broker &&
-        localStorage.quick_link &&
-        localStorage.quick_link === 'true'
-      ) {
-        let brokerUrl = quickLinkBrokers[localStorage.user_broker]
-        if (brokerUrl !== undefined || brokerUrl !== null || brokerUrl !== '') {
-          if (this.tickerInput !== undefined || this.tickerInput !== '') {
-            brokerUrl = brokerUrl.replace('{tiker}', this.tickerInput)
-            window.open(brokerUrl, '_blank')
-          }
-        }
-      } else if (localStorage.user_broker && !localStorage.quick_link) {
-        alert('Turn on quick link')
-      } else if (
-        (!localStorage.user_broker && !localStorage.quick_link) ||
-        localStorage.user_broker
-      ) {
-        alert('setup')
-      }
+      // if (
+      //   localStorage.user_broker &&
+      //   localStorage.quick_link &&
+      //   localStorage.quick_link === 'true'
+      // ) {
+      //   let brokerUrl = quickLinkBrokers[localStorage.user_broker]
+      //   if (brokerUrl !== undefined || brokerUrl !== null || brokerUrl !== '') {
+      //     if (this.tickerInput !== undefined || this.tickerInput !== '') {
+      //       brokerUrl = brokerUrl.replace('{tiker}', this.tickerInput)
+      //       window.open(brokerUrl, '_blank')
+      //     }
+      //   }
+      // } else if (localStorage.user_broker && !localStorage.quick_link) {
+      //   alert('Turn on quick link')
+      // } else if (
+      //   (!localStorage.user_broker && !localStorage.quick_link) ||
+      //   localStorage.user_broker
+      // ) {
+      //   alert('setup')
+      // }
     },
     async getAnalystReport() {
       const query = buildRequest({
@@ -318,18 +325,6 @@ export default {
 </script>
 
 <style lang="css" scoped>
-/* .cards {
-  max-width: 22em;
-}
-
-.card {
-  margin-top: 2em;
-}
-
-.chart {
-  height: 22em;
-} */
-
 #more {
   display: none;
 }
@@ -338,5 +333,14 @@ a.dropdown-item.is-active span,
 .dropdown .dropdown-menu .has-link a.is-active span,
 button.dropdown-item.is-active span {
   color: white;
+}
+
+div.tabItem {
+  display: flex;
+  flex-direction: row;
+}
+
+div.tabItem div.field.tile.is-child {
+  display: contents;
 }
 </style>

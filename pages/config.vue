@@ -12,9 +12,9 @@
           <h1 class="title is-6"><u>Options</u></h1>
           <b-field label="Your Broker">
             <div style="display: inline-flex;">
-              <b-select v-model="brokerSelected">
+              <b-select value="brokerSelected">
                 <option
-                  v-for="o in this.$store.state.brokerOptions"
+                  v-for="o in this.$store.getters.getBrokerOptions"
                   :key="o"
                   :value="o.key"
                   >{{ o.val }}</option
@@ -37,7 +37,7 @@
         <b-tab-item label="General Settings" icon="sliders-h">
           <h1 class="title is-6"><u>Options</u></h1>
           <b-field>
-            <b-switch>Quick Link</b-switch>
+            <b-switch :value="true">Quick Link</b-switch>
           </b-field>
         </b-tab-item>
         <b-tab-item label="Style Settings" icon="palette">
@@ -52,21 +52,26 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      brokerSelected: mapGetters.getBroker
+      brokerSelected: '',
+      QuickLink: this.$store.getters.getQuickLinkSet
     }
   },
   computed: {
-    ...mapGetters(['getBroker'])
+    ...mapGetters(['getQuickLinkSet', 'getBroker']),
+    ...mapMutations({
+      setBroker: 'setBroker',
+      toggleQuickLink: 'toggleQuickLink'
+    })
   },
   watch: {
     brokerSelected() {
-      this.$store.commit('setBroker')
+      // this.$store.commit('setBroker', this.brokerSelected)
       // eslint-disable-next-line
-      console.warn(computed.mapGetters)
+      console.warn(this.getBroker, this.brokerSelected)
     }
   }
 }

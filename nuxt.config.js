@@ -64,15 +64,14 @@ export default {
         'faNewspaper',
         'faChartPie',
         'faCaretDown',
+        'faCaretUp',
         'faSlidersH',
         'faAngleRight',
         'faLink',
         'faInfoCircle',
         'faExclamationTriangle',
         'faHandshake',
-        'faPalette',
-        'faSortUp',
-        'faSortDown'
+        'faPalette'
       ] // include only icons required by your project
     }
   },

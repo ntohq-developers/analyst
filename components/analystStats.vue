@@ -65,3 +65,9 @@ export default {
   }
 }
 </script>
+
+<style>
+div div ul {
+  list-style: none !important;
+}
+</style>

@@ -1,7 +1,8 @@
 export const state = () => ({
   broker: {
     link: '',
-    name: ''
+    name: '',
+    isQuickLinkOn: ''
   },
   brokerLinks: {
     Robinhood: 'https://robinhood.com/stocks/{tiker}',
@@ -39,6 +40,9 @@ export const mutations = {
   setBroker(state, value) {
     state.broker.name = value
     state.broker.link = state.brokerLinks[state.broker.name]
+  },
+  toggleQuickLink(state, value) {
+    state.broker.isQuickLinkOn = value
   }
 }
 
@@ -69,5 +73,9 @@ export const getters = {
 
   getBrokerLink(state) {
     return state.broker.link
+  },
+
+  getQuickLinkSet(state) {
+    return state.broker.isQuickLinkOn
   }
 }

@@ -57,12 +57,6 @@
           ></cite
         >
         <cite
-          >TickerSymbol:
-          <a href="https://github.com/yashwanth2804/TickerSymbol"
-            >https://github.com/yashwanth2804/TickerSymbol</a
-          ></cite
-        >
-        <cite
           >News Api: <a href="https://newsapi.org">https://newsapi.org</a></cite
         >
       </div>

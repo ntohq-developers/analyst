@@ -5,27 +5,17 @@
 
 <template>
   <section>
-    <b-collapse animation="slide">
-      <template #trigger="props">
-        <div class="card-header" role="button">
-          <p class="card-header-title">Summary</p>
-          <a class="card-header-icon">
-            <b-icon :icon="props.open ? 'caret-up' : 'caret-down'"> </b-icon>
-          </a>
-        </div>
-      </template>
-      <div class="card-content">
-        <div class="content">
-          <h3 class="title is-3 has-text-centered">{{ stockName }}</h3>
-          <p style="margin-bottom: 0"><b>Sector:</b> {{ buisnessSector }}</p>
-          <p style="margin-bottom: 10px">
-            <b>Total Employees:</b> {{ totalEmployees }}
-          </p>
-          {{ summaryParagraph }}
-          <slot />
-        </div>
+    <div class="card-content">
+      <div class="content">
+        <h3 class="title is-3 has-text-centered">{{ stockName }}</h3>
+        <p style="margin-bottom: 0"><b>Sector:</b> {{ buisnessSector }}</p>
+        <p style="margin-bottom: 10px">
+          <b>Total Employees:</b> {{ totalEmployees }}
+        </p>
+        {{ summaryParagraph }}
+        <slot />
       </div>
-    </b-collapse>
+    </div>
   </section>
 </template>
 

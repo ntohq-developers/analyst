@@ -125,55 +125,69 @@
         </div>
       </div>
       <section style="margin-top: 5vh">
-        <b-tabs position="is-centered">
-          <b-tab-item label="Stats" icon="chart-pie">
-            <div :style="{ 'margin-bottom': '75px', display: displayReport }">
-              <analystSummary
-                :summary="analystReport.summary"
-                :sector="analystReport.sector"
-                :employees="analystReport.employees"
-                :name="analystReport.name"
-              >
-                <analystStats :content="report"></analystStats>
-              </analystSummary>
+        <b-collapse animation="slide">
+          <template #trigger="props">
+            <div
+              class="card-header"
+              role="button"
+              style="justify-content: right; margin-bottom: 10px"
+            >
+              <a class="card-header-icon">
+                <b-icon :icon="props.open ? 'caret-up' : 'caret-down'">
+                </b-icon>
+              </a>
             </div>
-          </b-tab-item>
-          <b-tab-item label="News" icon="newspaper" pack="far">
-            <h1 class="title is-6"><u>Stock News</u></h1>
-            <aside class="section cards" style="padding-top: 0">
-              <section class="box tile" style="padding: 20px">
-                <div style="max-height: 100vh; overflow-y: scroll">
-                  <div
-                    v-for="article in articles"
-                    :key="article.title"
-                    class="card"
-                  >
-                    <div class="card-image">
-                      <figure class="image">
-                        <img :src="article.urlImage" />
-                      </figure>
-                    </div>
-                    <div class="card-content">
-                      <div class="media">
-                        <div class="media-content" style="overflow: hidden">
-                          <p class="title is-4">{{ article.title }}</p>
+          </template>
+          <b-tabs position="is-centered">
+            <b-tab-item label="Stats" icon="chart-pie">
+              <div :style="{ 'margin-bottom': '75px', display: displayReport }">
+                <analystSummary
+                  :summary="analystReport.summary"
+                  :sector="analystReport.sector"
+                  :employees="analystReport.employees"
+                  :name="analystReport.name"
+                >
+                  <analystStats :content="report"></analystStats>
+                </analystSummary>
+              </div>
+            </b-tab-item>
+            <b-tab-item label="News" icon="newspaper" pack="far">
+              <h1 class="title is-6"><u>Stock News</u></h1>
+              <aside class="section cards" style="padding-top: 0">
+                <section class="box tile" style="padding: 20px">
+                  <div style="max-height: 100vh; overflow-y: scroll">
+                    <div
+                      v-for="article in articles"
+                      :key="article.title"
+                      class="card"
+                    >
+                      <div class="card-image">
+                        <figure class="image">
+                          <img :src="article.urlImage" />
+                        </figure>
+                      </div>
+                      <div class="card-content">
+                        <div class="media">
+                          <div class="media-content" style="overflow: hidden">
+                            <p class="title is-4">{{ article.title }}</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="card-footer">
-                      <a :href="article.url" class="card-footer-item"
-                        >Open article</a
-                      >
+                      <div class="card-footer">
+                        <a :href="article.url" class="card-footer-item"
+                          >Open article</a
+                        >
+                      </div>
                     </div>
                   </div>
-                </div>
-              </section>
-            </aside>
-          </b-tab-item>
-          <b-tab-item label="ML" icon="project-diagram">
-            <h1 class="title is-6"><u>Machine Learning Stats</u></h1>
-          </b-tab-item>
-        </b-tabs>
+                </section>
+              </aside>
+            </b-tab-item>
+            <b-tab-item label="ML" icon="project-diagram">
+              <h1 class="title is-6"><u>Machine Learning Stats</u></h1>
+            </b-tab-item>
+          </b-tabs>
+        </b-collapse>
       </section>
     </div>
   </section>

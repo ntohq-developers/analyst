@@ -49,7 +49,7 @@
       </section>
       <footer
         class="footer level has-background-primary has-text-centered has-text-white box"
-        style="padding: 20px; flex: 0.5"
+        style="padding: 20px; flex: 0.5; border-radius: 6px 6px 0px 0px"
       >
         <div class="level-left">
           <p class="level-item">Analyst 2021&copy;</p>

@@ -4,7 +4,7 @@
  -->
 
 <template>
-  <section style="padding: 1.5vh; flex: 1;">
+  <section style="padding: 1.5vh; flex: 1; margin-top: 1.5vh">
     <h1 class="title is-3">About Analyst</h1>
     <p class="has-text-black">
       Analyst is a website that analyzes stocks using Charts, Computational

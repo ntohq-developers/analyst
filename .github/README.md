@@ -11,8 +11,11 @@ Python-based for data processing.
 ## Frontend
 
 - Vue.js
-- Chart.js
-- Tailwind
+- nuxt.js
+- ApexCharts
+- Sass
+- Buefy
+- Bulma
 
 ## DevOps Pipeline
 

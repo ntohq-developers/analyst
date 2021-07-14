@@ -51,17 +51,15 @@ export const mutations = {
   },
 
   saveBroker(state) {
-    Cookies.set('broker', state.set.toString())
+    Cookies.set('broker', state.brokers.set.toString())
   },
 
   getSavedBroker: (state) => {
     if (Cookies.get('broker')) {
-      state.set = JSON.stringify(Cookies.get('broker'))
-      // eslint-disable-next-line
-     console.debug(typeof(state.set))
+      state.brokers.set = JSON.stringify(Cookies.get('broker'))
       return 1
     }
-    Cookies.set('broker', state.set.toString())
+    Cookies.set('broker', state.brokers.set.toString())
     return 0
   }
 }

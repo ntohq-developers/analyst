@@ -118,8 +118,8 @@ export default {
   },
   methods: {
     loadVuexState() {
-      this.$store.commit('getSavedBroker')
-      this.$store.commit('settings', 'getSavedQuickLink')
+      this.$store.commit('settings/getSavedBroker')
+      this.$store.commit('settings/getSavedQuickLink')
     },
     pushNotifications() {
       this.danger()

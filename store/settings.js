@@ -8,22 +8,24 @@ export const state = () => ({
 
 export const mutations = {
   setQuickLink(state, data) {
-    state.settings.quick_link = data
+    state.options.quick_link = data
   },
 
   saveQuickLink(state) {
-    Cookies.set('quickLink', state.settings.quick_link, {
+    Cookies.set('quickLink', state.options.quick_link, {
       sameSite: 'None',
       secure: true
     })
   },
 
   getSavedQuickLink: (state) => {
+    // eslint-disable-next-line
+    console.debug(Cookies.get('quickLink'))
     if (Cookies.get('quickLink')) {
-      state.settings.quick_link = Cookies.get('quickLink') === 'true'
+      state.options.quick_link = Cookies.get('quickLink') === 'true'
       return 1
     }
-    Cookies.set('quickLink', state.settings.quick_link, {
+    Cookies.set('quickLink', state.options.quick_link, {
       sameSite: 'None',
       secure: true
     })

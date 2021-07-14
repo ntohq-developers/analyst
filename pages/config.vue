@@ -50,7 +50,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['brokers', { quickLinkValue: 'settings.quick_link' }])
+    ...mapState(['brokers', { quickLinkValue: 'settings.options.quick_link' }])
   },
 
   created() {
@@ -72,8 +72,8 @@ export default {
     },
 
     saveQuickLink(event) {
-      this.$store.commit('settings', 'setQuickLink', event)
-      this.$store.commit('settings', 'saveQuickLink')
+      this.$store.commit('settings/setQuickLink', event)
+      this.$store.commit('settings/saveQuickLink')
     },
 
     getSavedBroker() {

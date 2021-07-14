@@ -292,7 +292,9 @@ export default {
 
     quickLink() {
       const broker = this.$store.state.brokers.set
-      const quickLink = this.$store.state.options.quick_link
+      // eslint-disable-next-line
+      console.debug(this.$store.state.settings.options.quick_link)
+      const quickLink = this.$store.state.settings.options.quick_link
       if (broker.name !== 'none' && quickLink === true) {
         if (this.tickerInput !== undefined || this.tickerInput !== '') {
           const brokerUrl = broker.link.replace('{tiker}', this.tickerInput)

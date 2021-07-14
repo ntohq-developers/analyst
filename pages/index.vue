@@ -240,7 +240,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getQuickLinkSet'])
+    ...mapGetters(['getSetBroker'])
   },
   // mounted() {
   //   // eslint-disable-next-line
@@ -300,7 +300,7 @@ export default {
       //   localStorage.quick_link &&
       //   localStorage.quick_link === 'true'
       // ) {
-      //   let brokerUrl = quickLinkBrokers[localStorage.user_broker]
+      //   let brokerUrl = this.$store.state.brokers.set.link
       //   if (brokerUrl !== undefined || brokerUrl !== null || brokerUrl !== '') {
       //     if (this.tickerInput !== undefined || this.tickerInput !== '') {
       //       brokerUrl = brokerUrl.replace('{tiker}', this.tickerInput)

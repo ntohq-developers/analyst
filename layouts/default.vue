@@ -111,10 +111,15 @@ export default {
       ]
     }
   },
+
   created() {
+    this.loadVuexState()
     this.pushNotifications()
   },
   methods: {
+    loadVuexState() {
+      this.$store.commit('getSavedBroker')
+    },
     pushNotifications() {
       this.danger()
     },

@@ -12,12 +12,12 @@
           <h1 class="title is-6"><u>Options</u></h1>
           <b-field label="Your Broker">
             <div style="display: inline-flex;">
-              <b-select value="brokerSelected">
+              <b-select v-model="brokerIndex" :change="saveBroker()">
                 <option
-                  v-for="o in this.$store.getters.getBrokerOptions"
-                  :key="o"
-                  :value="o.key"
-                  >{{ o.val }}</option
+                  v-for="(broker, index) in brokers.list"
+                  :key="broker.id"
+                  :value="index"
+                  >{{ broker.name }}</option
                 >
               </b-select>
               <b-tooltip
@@ -28,7 +28,7 @@
                   type="is-primary"
                   style="margin-left: 10px; align-self: center;"
                 >
-                  {{ brokerSelected }}
+                  Selected brockers
                 </b-tag>
               </b-tooltip>
             </div>
@@ -52,26 +52,36 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters } from 'vuex'
+import { mapState, mapMutations, mapGetters } from 'vuex'
+
 export default {
   data() {
     return {
-      brokerSelected: '',
-      QuickLink: this.$store.getters.getQuickLinkSet
+      brokerIndex: 0
     }
   },
   computed: {
-    ...mapGetters(['getQuickLinkSet', 'getBroker']),
-    ...mapMutations({
-      setBroker: 'setBroker',
-      toggleQuickLink: 'toggleQuickLink'
-    })
+    ...mapState(['brokers']),
+    ...mapGetters(['getSetBroker'])
   },
-  watch: {
-    brokerSelected() {
-      // this.$store.commit('setBroker', this.brokerSelected)
-      // eslint-disable-next-line
-      console.warn(this.getBroker, this.brokerSelected)
+  created() {
+    this.getSavedBroker()
+  },
+  methods: {
+    ...mapMutations(['setBroker']),
+    saveBroker(event) {
+      const name = this.$store.state.brokers.list[this.brokerIndex].name
+      const link = this.$store.state.brokers.list[this.brokerIndex].link
+      const index = this.brokerIndex
+      this.$store.commit('setBroker', {
+        link,
+        name,
+        index
+      })
+      this.$store.commit('saveBroker')
+    },
+    getSavedBroker() {
+      this.brokerIndex = this.$store.state.brokers.set.index
     }
   }
 }

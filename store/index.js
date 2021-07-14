@@ -1,81 +1,67 @@
+import Cookies from 'js-cookie'
+
 export const state = () => ({
-  broker: {
-    link: '',
-    name: '',
-    isQuickLinkOn: ''
-  },
-  brokerLinks: {
-    Robinhood: 'https://robinhood.com/stocks/{tiker}',
-    'TD-Ameritrade':
-      'https://invest.ameritrade.com/grid/p/site#r=jPage/https://research.ameritrade.com/grid/wwws/research/stocks/summary?symbol={tiker}',
-    Webull: 'https://app.webull.com/trade?source=seo-google-quote',
-    eTrade:
-      'https://www.etrade.wallst.com/v1/stocks/snapshot/snapshot.asp?symbol={tiker}'
-  },
-  brokerOptions: [
-    {
-      val: '-',
-      key: 'none'
-    },
-    {
-      val: 'E-Trade',
-      key: 'eTrade'
-    },
-    {
-      val: 'TD Ameritrade',
-      key: 'TD-Ameritrade'
-    },
-    {
-      val: 'Robinhood',
-      key: 'Robinhood'
-    },
-    {
-      val: 'Webull',
-      key: 'Webull'
+  brokers: {
+    list: [
+      {
+        name: 'none',
+        link: ''
+      },
+      {
+        name: 'Rohbinhood',
+        link: 'https://robinhood.com/stocks/{tiker}'
+      },
+      {
+        name: 'TD-Ameritrade',
+        link:
+          'https://invest.ameritrade.com/grid/p/site#r=jPage/https://research.ameritrade.com/grid/wwws/research/stocks/summary?symbol={tiker}'
+      },
+      {
+        name: 'Webull',
+        link: 'https://app.webull.com/trade?source=seo-google-quote'
+      },
+      {
+        name: 'E-Trade',
+        link:
+          'https://www.etrade.wallst.com/v1/stocks/snapshot/snapshot.asp?symbol={tiker}'
+      }
+    ],
+    set: {
+      name: 'none',
+      link: '',
+      index: 0
     }
-  ]
+  }
 })
 
-export const mutations = {
-  setBroker(state, value) {
-    state.broker.name = value
-    state.broker.link = state.brokerLinks[state.broker.name]
-  },
-  toggleQuickLink(state, value) {
-    state.broker.isQuickLinkOn = value
-  }
-}
-
-export const actions = {
-  setBroker({ commit }, value) {
-    commit('setBroker', value)
-  },
-
-  setBrokerLink({ commit }, value) {
-    commit('setBrokerLink', value)
-  }
-}
-
-export const modules = {}
-
+// getters
 export const getters = {
-  getBroker(state) {
-    return state.broker.name
+  getSetBroker: (state) => {
+    return state.brokers.set
+  }
+}
+
+export const actions = {}
+
+export const mutations = {
+  setBroker(state, data) {
+    state.brokers.set.name = data.name
+    state.brokers.set.link = data.link
+    state.brokers.set.index = data.index
   },
 
-  getBrokerList(state) {
-    return state.brokerLinks
+  saveBroker(state) {
+    Cookies.set('broker', state.set.toString())
   },
 
-  getBrokerOptions(state) {
-    return state.brokerOptions
-  },
-
-  getBrokerLink(state) {
-    return state.broker.link
-  },
-
-  getQuickLinkSet(state) {
-    return state.broker.isQuickLinkOn
+  getSavedBroker: (state) => {
+    if (Cookies.get('broker')) {
+      state.set = JSON.stringify(Cookies.get('broker'))
+      // eslint-disable-next-line
+     console.debug(typeof(state.set))
+      return 1
+    }
+    Cookies.set('broker', state.set.toString())
+    return 0
   }
 }

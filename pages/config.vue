@@ -19,17 +19,6 @@
                   >{{ broker.name }}</option
                 >
               </b-select>
-              <b-tooltip
-                label="This is the current value that is set."
-                position="is-bottom"
-              >
-                <b-tag
-                  type="is-primary"
-                  style="margin-left: 10px; align-self: center;"
-                >
-                  Selected brockers
-                </b-tag>
-              </b-tooltip>
             </div>
           </b-field>
         </b-tab-item>
@@ -83,8 +72,8 @@ export default {
     },
 
     saveQuickLink(event) {
-      this.$store.commit('setQuickLink', event)
-      this.$store.commit('saveQuickLink')
+      this.$store.commit('settings', 'setQuickLink', event)
+      this.$store.commit('settings', 'saveQuickLink')
     },
 
     getSavedBroker() {
@@ -92,7 +81,7 @@ export default {
     },
 
     getSavedQuickLink() {
-      this.quickLinkValue = this.$store.state.settings.quick_link
+      this.quickLinkValue = this.$store.state.settings.options.quick_link
     }
   }
 }

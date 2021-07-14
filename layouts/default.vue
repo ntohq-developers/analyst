@@ -23,7 +23,7 @@
             height="26"
             style="padding: 5px;"
           />
-          <h1 class="title is-6 has-text-white">analyst</h1>
+          <h1 class="title is-5 has-text-white">analyst</h1>
         </a>
       </div>
     </nav>
@@ -119,7 +119,7 @@ export default {
   methods: {
     loadVuexState() {
       this.$store.commit('getSavedBroker')
-      this.$store.commit('getSavedQuickLink')
+      this.$store.commit('settings', 'getSavedQuickLink')
     },
     pushNotifications() {
       this.danger()

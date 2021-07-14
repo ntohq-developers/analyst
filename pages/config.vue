@@ -9,7 +9,6 @@
       <h2 class="is-2 title has-text-centered">Configure Analyst</h2>
       <b-tabs position="is-centered">
         <b-tab-item label="Broker Settings" icon="handshake">
-          <h1 class="title is-6"><u>Options</u></h1>
           <b-field label="Your Broker">
             <div style="display: inline-flex;">
               <b-select v-model="brokerIndex" :change="saveBroker()">
@@ -35,13 +34,13 @@
           </b-field>
         </b-tab-item>
         <b-tab-item label="General Settings" icon="sliders-h">
-          <h1 class="title is-6"><u>Options</u></h1>
           <b-field>
-            <b-switch :value="true">Quick Link</b-switch>
+            <b-switch :value="quickLinkValue" @input="saveQuickLink($event)"
+              >Quick Link</b-switch
+            >
           </b-field>
         </b-tab-item>
         <b-tab-item label="Style Settings" icon="palette">
-          <h1 class="title is-6"><u>Options</u></h1>
           <b-field>
             <b-switch>Dark Mode</b-switch>
           </b-field>
@@ -52,7 +51,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   data() {
@@ -60,15 +59,17 @@ export default {
       brokerIndex: 0
     }
   },
+
   computed: {
-    ...mapState(['brokers']),
-    ...mapGetters(['getSetBroker'])
+    ...mapState(['brokers', { quickLinkValue: 'settings.quick_link' }])
   },
+
   created() {
     this.getSavedBroker()
+    this.getSavedQuickLink()
   },
+
   methods: {
-    ...mapMutations(['setBroker']),
     saveBroker(event) {
       const name = this.$store.state.brokers.list[this.brokerIndex].name
       const link = this.$store.state.brokers.list[this.brokerIndex].link
@@ -80,8 +81,18 @@ export default {
       })
       this.$store.commit('saveBroker')
     },
+
+    saveQuickLink(event) {
+      this.$store.commit('setQuickLink', event)
+      this.$store.commit('saveQuickLink')
+    },
+
     getSavedBroker() {
       this.brokerIndex = this.$store.state.brokers.set.index
+    },
+
+    getSavedQuickLink() {
+      this.quickLinkValue = this.$store.state.settings.quick_link
     }
   }
 }

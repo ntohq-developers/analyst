@@ -63,8 +63,6 @@ export default {
           labels: {
             formatter(val) {
               // May need to add if statments for more robust formating
-              // eslint-disable-next-line
-              console.warn(val)
               return dayjs(val).format('MMM DD HH:mm')
             }
           }

@@ -85,7 +85,7 @@
               style="margin-bottom: 2em"
               icon-left="link"
               type="is-primary"
-              @click="quickLink"
+              @click="quickLink()"
               >Quick Link</b-button
             >
             <b-field label="Period">
@@ -242,10 +242,6 @@ export default {
   computed: {
     ...mapGetters(['getSetBroker'])
   },
-  // mounted() {
-  //   // eslint-disable-next-line
-  //   console.warn(this)
-  // },
   methods: {
     debounceInput: _.debounce(function() {
       this.fetchSearchData()
@@ -295,26 +291,18 @@ export default {
     },
 
     quickLink() {
-      // if (
-      //   localStorage.user_broker &&
-      //   localStorage.quick_link &&
-      //   localStorage.quick_link === 'true'
-      // ) {
-      //   let brokerUrl = this.$store.state.brokers.set.link
-      //   if (brokerUrl !== undefined || brokerUrl !== null || brokerUrl !== '') {
-      //     if (this.tickerInput !== undefined || this.tickerInput !== '') {
-      //       brokerUrl = brokerUrl.replace('{tiker}', this.tickerInput)
-      //       window.open(brokerUrl, '_blank')
-      //     }
-      //   }
-      // } else if (localStorage.user_broker && !localStorage.quick_link) {
-      //   alert('Turn on quick link')
-      // } else if (
-      //   (!localStorage.user_broker && !localStorage.quick_link) ||
-      //   localStorage.user_broker
-      // ) {
-      //   alert('setup')
-      // }
+      const broker = this.$store.state.brokers.set
+      const quickLink = this.$store.state.settings.quick_link
+      if (broker.name !== 'none' && quickLink === true) {
+        if (this.tickerInput !== undefined || this.tickerInput !== '') {
+          const brokerUrl = broker.link.replace('{tiker}', this.tickerInput)
+          window.open(brokerUrl, '_blank')
+        }
+      } else if (quickLink === false || !quickLink) {
+        this.$buefy.dialog.alert("Turn on quick link in the setting's tab")
+      } else if (broker.name === 'none') {
+        this.$buefy.dialog.alert("Please select a broker in the setting's tab")
+      }
     },
     async getAnalystReport() {
       const query = buildRequest({

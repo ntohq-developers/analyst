@@ -51,15 +51,27 @@ export const mutations = {
   },
 
   saveBroker(state) {
-    Cookies.set('broker', state.brokers.set.toString())
+    Cookies.set('broker', JSON.stringify(state.brokers.set), {
+      sameSite: 'None',
+      secure: true
+    })
+    // eslint-disable-next-line
+    console.debug(JSON.stringify(state.brokers.set))
   },
 
   getSavedBroker: (state) => {
     if (Cookies.get('broker')) {
-      state.brokers.set = JSON.stringify(Cookies.get('broker'))
+      state.brokers.set = JSON.parse(Cookies.get('broker'))
+      // eslint-disable-next-line
+      console.debug(state.brokers.set)
       return 1
     }
-    Cookies.set('broker', state.brokers.set.toString())
+    Cookies.set('broker', JSON.stringify(state.brokers.set), {
+      sameSite: 'None',
+      secure: true
+    })
+    // eslint-disable-next-line
+    console.debug(JSON.stringify(state.brokers.set))
     return 0
   }
 }

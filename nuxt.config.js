@@ -41,7 +41,6 @@ export default {
    */
   modules: [
     // Doc: https://buefy.github.io/#/documentation
-    'nuxt-buefy',
     ['nuxt-buefy', { css: true, materialDesignIcons: true, iconfont: 'mdi' }],
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',

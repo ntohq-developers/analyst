@@ -1,7 +1,9 @@
 const express = require("express")
 const stocks  = require("./stock.js")
 const app = express()
-const port = 3000
+require("dotenv").config()
+
+const port = process.env.PORT || 8080
 
 app.get('/', (req, res) => {
    res.sendStatus(403)

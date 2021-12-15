@@ -1,1 +1,2 @@
 web: yarn start
+heroku scale web=0

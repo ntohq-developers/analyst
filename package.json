@@ -7,12 +7,12 @@
   "license": "MIT",
   "private": true,
   "engines": {
-   "node": "16.13.1"
+    "node": "16.13.1"
   },
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "start-server": "yarn workspace server start"
+    "start": "yarn workspace server start"
   }
 }

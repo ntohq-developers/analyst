@@ -1,0 +1,16 @@
+{
+  "name": "analyst.js",
+  "packageManager": "yarn@3.1.1",
+  "main": "main.js",
+  "author": "ntohq-developers <github@ntohq.dev> www.ntohq.com",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon main.js",
+    "run": "node main.js"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  }
+}

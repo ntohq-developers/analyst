@@ -2794,16 +2794,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"analyst.js@workspace:packages/analyst.js":
-  version: 0.0.0-use.local
-  resolution: "analyst.js@workspace:packages/analyst.js"
-  dependencies:
-    axios: ^0.24.0
-    dotenv: ^10.0.0
-    express: ^4.17.1
-  languageName: unknown
-  linkType: soft
-
 "analyst@workspace:.":
   version: 0.0.0-use.local
   resolution: "analyst@workspace:."
